@@ -34,6 +34,7 @@ public class UserController {
         newUser.setAddress(req.getAddress());
         newUser.setType("customer");
         newUser.setUsername(req.getUsername());
+
         newUser.setPassword(req.getPassword());
         newUser.setIslogined(false);
         userArrayList.add(newUser);
