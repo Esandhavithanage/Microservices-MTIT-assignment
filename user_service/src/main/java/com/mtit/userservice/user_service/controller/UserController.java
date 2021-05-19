@@ -52,52 +52,6 @@ public class UserController {
         return response;
     }
 
-    @PostMapping(path = "login", consumes = "application/json", produces = "application/json")
-    public @ResponseBody userResponse login(@RequestBody userRequest req) {
-
-        System.out.println(" Login details" + req);
-
-        userResponse response = new userResponse();
-
-        for (int i=0;i<userArrayList.size();i++) {
-            System.out.println(userArrayList.get(i).toString());
-
-            if(userArrayList.get(i).getUsername().equals(req.getUsername()) && userArrayList.get(i).getPassword().equals(req.getPassword())){
-                userArrayList.get(i).setIslogined(true);
-                response.setId(userArrayList.get(i).getId());
-                response.setType(userArrayList.get(i).getType());
-                response.setIslogined(userArrayList.get(i).isIslogined());
-                response.setMessage("successfully login");
-                break;
-            }
-            else {
-                response.setId(null);
-                response.setMessage("plese check user name and password");
-            }
-        }
-        return response;
-    }
-
-    @PostMapping(path = "logout", consumes = "application/json", produces = "application/json")
-    public @ResponseBody userResponse logout(@RequestBody userRequest req) {
-
-        System.out.println(" Login details" + req);
-
-
-        for (int i=0;i<userArrayList.size();i++) {
-
-            if(userArrayList.get(i).getId().equals(req.getId())){
-                userArrayList.get(i).setIslogined(false);
-
-            }
-
-        }
-
-        userResponse response = new userResponse();
-        response.setId(null);
-        response.setMessage("successfully logout");
-        return response;
-    }
 
     @PostMapping(path = "getUserstatus", consumes = "application/json", produces = "application/json")
     public @ResponseBody userResponse getUserstatus(@RequestBody userRequest req) {

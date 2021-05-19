@@ -62,67 +62,10 @@ public class ItemController {
     }
 
 
-    @PostMapping(path = "delete",consumes = "application/json",produces = "application/json")
-    public @ResponseBody ItemResponse deleteItem(@RequestBody ItemRequest req){
-
-        String msg = "";
-        ItemResponse itemResponse = new ItemResponse();
-        if(this.userStatusChecker(req)){
-            System.out.println(" deleted Item id" + req.getId());
-
-
-            for (int i=0;i<items.size();i++) {
-
-                if(items.get(i).getId().equals(req.getId())){
-                    items.remove(i);
-                }
-            }
-
-            itemResponse.setId(req.getId());
-            itemResponse.setItems(items);
-            msg="Successfully deleted";
-        }else {
-            msg="you can't accesses this page";
-        }
-
-        itemResponse.setMessage(msg);
-        return itemResponse;
-    }
-
-    @PostMapping(path = "update",consumes = "application/json",produces = "application/json")
-    public @ResponseBody ItemResponse updateItem(@RequestBody ItemRequest req){
-
-        String msg = "";
-        ItemResponse itemResponse = new ItemResponse();
-        if(this.userStatusChecker(req)){
-            for (int i=0;i<items.size();i++) {
-                System.out.println(items.get(i).getId().equals(req.getId()));
-                System.out.println(req.getId());
-                if(items.get(i).getId().equals(req.getId())){
-                    items.get(i).setName(req.getName());
-                    items.get(i).setQty(req.getQty());
-                    items.get(i).setDescription(req.getDescription());
-                    items.get(i).setSellingPrice(req.getSellingPrice());
-                }
-            }
-
-
-            itemResponse.setId(req.getId());
-            itemResponse.setItems(items);
-
-            msg="Successfully updated";
-        }else {
-            msg="you can't accesses this page";
-        }
-
-        itemResponse.setMessage(msg);
-        return itemResponse;
-    }
-
     public boolean userStatusChecker(ItemRequest itemRequest){
         getUserResponse getUserResponse =  userServiceimpl.checkUser(itemRequest);
 
-        return (getUserResponse.isIslogined() == true && getUserResponse.getType().equals("Admin"));
+        return (getUserResponse.getType().equals("Admin"));
     }
 }
 

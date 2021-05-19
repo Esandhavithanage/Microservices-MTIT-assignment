@@ -6,6 +6,15 @@ public class paymentRequest {
     private String cardNumber;
     private String vcc;
     private String expirationDate;
+    private String orderId;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getPaymentType() {
         return paymentType;
@@ -55,6 +64,7 @@ public class paymentRequest {
                 ", cardNumber='" + cardNumber + '\'' +
                 ", vcc='" + vcc + '\'' +
                 ", expirationDate='" + expirationDate + '\'' +
+                ", orderId='" + orderId + '\'' +
                 '}';
     }
 }
