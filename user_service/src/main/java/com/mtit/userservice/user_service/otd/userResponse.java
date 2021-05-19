@@ -2,9 +2,18 @@ package com.mtit.userservice.user_service.otd;
 
 public class userResponse {
     private String id;
+    private String locationid;
     private String message;
     private String type;
     private boolean islogined;
+
+    public String getLocationid() {
+        return locationid;
+    }
+
+    public void setLocationid(String locationid) {
+        this.locationid = locationid;
+    }
 
     public String getType() {
         return type;

@@ -1,8 +1,10 @@
 package com.mtit.userservice.user_service.controller;
 
+import com.mtit.userservice.user_service.otd.getlocationResponse;
 import com.mtit.userservice.user_service.otd.user;
 import com.mtit.userservice.user_service.otd.userRequest;
 import com.mtit.userservice.user_service.otd.userResponse;
+import com.mtit.userservice.user_service.service.userServiceimpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class UserController {
 
     private ArrayList<user> userArrayList = new ArrayList<>();
+    private userServiceimpl userServiceimplobj = new userServiceimpl();
 
     public UserController() {
         user admin = new user();
@@ -26,6 +29,8 @@ public class UserController {
     public @ResponseBody userResponse register(@RequestBody userRequest req) {
 
         System.out.println(" New user details" + req);
+
+      getlocationResponse getlocationResponseobj =  userServiceimplobj.getLocationdetails(req);
 
         user newUser = new user();
         newUser.setName(req.getName());
@@ -42,6 +47,7 @@ public class UserController {
 
         userResponse response = new userResponse();
         response.setId(newUser.getId());
+        response.setLocationid(getlocationResponseobj.getId());
         response.setMessage("successfully registered");
         return response;
     }

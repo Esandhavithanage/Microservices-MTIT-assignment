@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Service
-public class orderServiceimpl {
+public class PaymentServiceimpl {
 
     private RestTemplate restTemplate = new RestTemplate();
 
